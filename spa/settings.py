@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'spa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'boat',
+        'NAME': 'spa',
         'PASSWORD': os.environ['PASSWORD'],
     }
 }
