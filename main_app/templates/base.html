@@ -20,12 +20,12 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
-          {% if user.is_authenticated %}
+          {% comment %} {% if user.is_authenticated %}
 
           
           {% else %}
           
-          {% endif %}
+          {% endif %} {% endcomment %}
         </ul>
       </div>
     </nav>
