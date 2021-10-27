@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>All Treatments</h1>
+
+{% for treatment in treatments %}
+  <div class="col s12 m7">
+    <h2 class="header"></h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="{{ treatment.image }}">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <h3>{{ treatment.name }}</h3>
+            <p>Price: ${{ treatment.price }}</p>
+          
+        </div>
+        <div class="card-action">
+          <a href="{% url 'treatments_detail' treatment.id %}">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}
