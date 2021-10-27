@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
-environ.Env()
-environ.Env.read_env()
-import os
+# import environ
+# environ.Env()
+# environ.Env.read_env()
+# import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'spa',
-        'PASSWORD': os.environ['PASSWORD'],
+        # 'PASSWORD': os.environ['PASSWORD'],
     }
 }
 
