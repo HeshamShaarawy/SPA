@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{ treatment.name }}</h2>
+
+  <div class="col s12 m7">
+    <h2 class="header"></h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="{{ treatment.image }}">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <h4>Category: {{ treatment.get_category_display }}</h4>
+          <h4>Price: ${{ treatment.price }}</h4>
+            <p>{{ treatment.description }}</p>        
+        </div>
+        <div class="card-action">
+          <a href="">Book</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
