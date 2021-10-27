@@ -21,3 +21,17 @@ def treatments_detail(request, treatment_id):
   treatment = Treatment.objects.get(id=treatment_id)
   return render(request, 'treatments/detail.html', { 'treatment': treatment })
 
+class TreatmentCreate(CreateView):
+    model = Treatment
+    fields = '__all__'
+    # success_url = '/treatments/'
+
+class TreatmentUpdate(UpdateView):
+    model = Treatment
+    fields = '__all__'
+
+class TreatmentDelete(DeleteView):
+    model = Treatment
+    success_url = '/treatments/'
+
+
