@@ -1,4 +1,4 @@
 .env
 *.pyc
 settings.py
-__pycache__
+/spa/_pycashe_/

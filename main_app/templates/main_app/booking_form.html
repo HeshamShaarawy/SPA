@@ -11,7 +11,7 @@
     </form>
 
     <script>
-        // create a datepicker
+        //create a datepicker
         var dateEl = document.getElementById('id_date');
         M.Datepicker.init(dateEl, {
           format: 'yyyy-mm-dd',
@@ -19,6 +19,13 @@
           setDefaultDate: true,
           autoClose: true
         });
+
+        var timeEl = document.getElementById('id_time');
+         M.Timepicker.init(timeEl, {
+             format : 'hh-mm',
+             twelveHour: false,
+             autoClose: true
+         })
       
         // initialize the meal select
         var selectEl = document.getElementById('id_specialist');
