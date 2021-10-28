@@ -2,10 +2,6 @@ from django.db import models
 from django.db.models.fields import IntegerField
 from django.urls import reverse
 
-
-# Create your models here.
-
-
 CATEGORIES = (
     (1, 'Facial and Skin Treatments'),
     (2, 'Massage'),
@@ -60,9 +56,9 @@ STATUS = (
 
 class Treatment(models.Model):
     name = models.CharField(max_length=100)
-    category = IntegerField(
+    category = models.IntegerField(
         choices=CATEGORIES,
-        default=[1][0]
+        default=CATEGORIES[0][0]
     )
     image = models.CharField(max_length=300)
     description = models.TextField(max_length=800)
