@@ -12,19 +12,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
->
-  <header class="navbar-fixed">
- 
+
+  <header class="navbar"> 
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
     <nav>
       <div class="nav-wrapper">
         <ul>
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Spa</a></li>
         </ul>
-        <ul class="right">
+        <ul class="right hide-on-med-and-down">
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'treatments_index' %}">Treatments</a></li>
           <li><a href="{% url 'treatments_create' %}">Create Treatment</a></li>
-          <li><a href="{% url 'bookings_create'%}">Book</a></li>
+          <li><a href="{% url 'bookings_index' %}">Bookings</a></li>
           {% comment %} {% if user.is_authenticated %}
 
           
@@ -34,7 +39,7 @@
         </ul>
       </div>
     </nav>
-  </header>
+   </header>
   <main class="container">
     {% block content %}
     {% endblock %}
@@ -43,5 +48,4 @@
     <div class="right">All Rights Reserved, &copy; SPA by Hesham Shaarawy, Olga Osipchuk, Svitlana Karahayeva &nbsp;</div>
   </footer>
 </body>
-
-</html>
+</html> 
