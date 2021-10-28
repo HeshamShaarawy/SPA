@@ -1,12 +1,21 @@
+<style>
+    .container form table tr td select#id_category{
+        display: block !important;
+    }
+</style>
 {% extends 'base.html' %}
 
 {% block content %}
 
-    <form action="" method="POST">
+    <form action="" method="POST" role="form">
         {% csrf_token %}
         <table class="striped">
             {{ form.as_table }}
+                  
         </table>
+
+        
         <input type="submit" value="Submit" class='btn'>
     </form>
 {% endblock %}
+

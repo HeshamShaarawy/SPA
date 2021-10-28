@@ -23,7 +23,7 @@ def treatments_detail(request, treatment_id):
 
 class TreatmentCreate(CreateView):
     model = Treatment
-    fields = '__all__'
+    fields = ['name', 'image', 'category', 'description', 'price']
     # success_url = '/treatments/'
 
 class TreatmentUpdate(UpdateView):
