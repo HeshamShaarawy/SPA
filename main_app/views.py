@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Treatment, Booking
 
 
+
 # Create your views here.
 
 def home(request):
@@ -55,7 +56,7 @@ def bookings_detail(request, booking_id):
 
 
 class BookingCreate(CreateView):
-    model = Booking
+    model = Booking 
     fields = '__all__'
     # success_url = '/bookings/'
 

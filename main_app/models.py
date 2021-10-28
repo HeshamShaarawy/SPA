@@ -10,7 +10,7 @@ CATEGORIES = (
     (5, 'Hair Services')
 )
 
-PAYMETS = [
+PAYMENTS = [
     (1, 'VISA'),
     (2, 'MASTER CARD'),
     (3, 'CRYPTO'),
@@ -71,10 +71,10 @@ class Treatment(models.Model):
 
 class Client(models.Model):
     name = models.CharField(max_length=300)
-    phone_number = models.IntegerField(max_length=13)
+    phone_number = models.CharField(max_length=13)
     email_address = models.EmailField(max_length=254)
     payment_method = IntegerField(
-        choices=PAYMETS,
+        choices=PAYMENTS,
         default=[0][0]
     )
 
@@ -82,12 +82,13 @@ class Client(models.Model):
 
 
 class Booking(models.Model):
-    date = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField()
+    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
     specialist = models.CharField(
         choices=SPECIALISTS,
         max_length=50
     )
-    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
     client = models.CharField(
         default='Client Name',
         max_length=100
