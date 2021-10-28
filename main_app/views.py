@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Treatment, Booking, Client
+from .models import Treatment, Booking
 
 
 # Create your views here.
@@ -24,9 +24,6 @@ def treatments_index(request):
 def treatments_detail(request, treatment_id):
     treatment = Treatment.objects.get(id=treatment_id)
     return render(request, 'treatments/detail.html', {'treatment': treatment})
-
-# Clients views
-# def clients_index(request):
 
 
 class TreatmentCreate(CreateView):
