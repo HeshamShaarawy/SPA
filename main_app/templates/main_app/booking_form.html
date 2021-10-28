@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="striped">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" class='btn'>
+    </form>
+
+    <script>
+        // create a datepicker
+        var dateEl = document.getElementById('id_date');
+        M.Datepicker.init(dateEl, {
+          format: 'yyyy-mm-dd',
+          defaultDate: new Date(),
+          setDefaultDate: true,
+          autoClose: true
+        });
+      
+        // initialize the meal select
+        var selectEl = document.getElementById('id_specialist');
+        M.FormSelect.init(selectEl);
+        
+        var selectEl = document.getElementById('id_treatment');
+        M.FormSelect.init(selectEl);
+        
+        
+        var selectEl = document.getElementById('id_status');
+        M.FormSelect.init(selectEl);
+    </script>
+{% endblock %}

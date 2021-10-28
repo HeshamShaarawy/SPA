@@ -12,11 +12,15 @@
       <div class="card-stacked">
         <div class="card-content">
           <h4>Category: {{ treatment.get_category_display }}</h4>
-          <h4>Price: ${{ treatment.price }}</h4>
+          <h4>Price: ${{ treatment.price }} CAD</h4>
             <p>{{ treatment.description }}</p>        
         </div>
         <div class="card-action">
-          <a href="">Book</a>
+          <div class="card-action">
+            <a href=""class="white-text btn">Book</a>
+            <a class="white-text btn orange light-4" href="{% url 'treatments_update' treatment.id %}">Update</a>
+            <a class="white-text btn red light-4" href="{% url 'treatments_delete' treatment.id %}">Delete</a>
+          </div>
         </div>
       </div>
     </div>
