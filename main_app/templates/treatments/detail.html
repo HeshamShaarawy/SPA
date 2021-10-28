@@ -17,7 +17,7 @@
         </div>
         <div class="card-action">
           <div class="card-action">
-            <a href=""class="white-text btn">Book</a>
+            <a href="{% url 'bookings_create' %}"class="white-text btn">Book</a>
             <a class="white-text btn orange light-4" href="{% url 'treatments_update' treatment.id %}">Update</a>
             <a class="white-text btn red light-4" href="{% url 'treatments_delete' treatment.id %}">Delete</a>
           </div>

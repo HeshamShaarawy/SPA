@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Booking detail screen 
+
+<h2>{{ booking.id }}</h2>
+
+
+
+  <div class="col s12 m7">
+    <h2 class="header"></h2>
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <h4>Client: {{ booking.client }}</h4>
+        <h4>{{booking.get_treatment_display}}</h4>
+          <p>Booking is scheduled on {{booking.date}}</p>
+          <p>Assigned to : {{booking.get_specialist_display}}</p>
+          <p>Current booking status: {{booking.get_status_display}}</p>       
+        </div>
+        <div class="card-action">
+          <div class="card-action">
+            <a href="{% url 'bookings_index' %}"class="white-text btn">Back</a>
+            <a class="white-text btn orange light-4" href="{% url 'bookings_update' booking.id %}">Update</a>
+            <a class="white-text btn red light-4" href="{% url 'bookings_delete' booking.id %}">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
  
 

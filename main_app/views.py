@@ -60,7 +60,7 @@ class BookingCreate(CreateView):
     # success_url = '/bookings/'
 
 
-class Bookingupdate(UpdateView):
+class BookingUpdate(UpdateView):
     model = Booking
     fields = '__all__'
 
