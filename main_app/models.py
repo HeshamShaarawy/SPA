@@ -9,10 +9,46 @@ from django.urls import reverse
 CATEGORIES = (
     (1, 'Facial and Skin Treatments'),
     (2, 'Massage'),
-    (3, 'Lazer Treatments'),
+    (3, 'Laser Treatments'),
     (4, 'Hand and Foot Treatments'),
     (5, 'Hair Services')
 )
+
+SPECIALISTS = [
+    ('Skin Care Specialist',(
+            ('sk1', 'Skin1'),
+            ('sk2', 'Skin2'),
+        )    
+    ),
+    ('Registered Massage Therapist', (
+            ('rmt1', 'Reg.M.T.1'),
+            ('rmt1', 'Reg.M.T.2'),
+        )
+    ),
+    ('Laser Technitian', (
+            ('lsr1', 'Laser 1'),
+            ('lsr2', 'Laser 2'),
+         )
+    ),
+    ('Non-Registered Massage provider', (
+            ('Non-RMT1', 'Non-1'),
+            ('Non-RMT2', 'Non-2'),
+        )
+    ),
+    ('Hair Styles',(
+            ('HS-1', 'Hair Artist -1'),
+            ('HS-2', 'Hair Artist -2'),
+        )
+    ),
+    ('any', 'any'),
+]
+
+STATUS = (
+    (1, 'Scheduled'),
+    (2, 'Performed'),
+    (3, 'Cancelled')
+)
+
 
 class Treatment(models.Model):
     name = models.CharField(max_length=100)
@@ -30,3 +66,23 @@ class Treatment(models.Model):
     def get_absolute_url(self):
         return reverse('treatments_detail', kwargs={ 'treatment_id': self.id })
 
+class Booking(models.Model):
+    date = models.DateTimeField()
+    specialist = models.CharField(
+        choices=SPECIALISTS,
+        max_length=50
+    )
+    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
+    client = models.CharField(
+        default= 'Client Name',
+        max_length=100
+    )
+    email = models.EmailField()
+    status = models.IntegerField(
+        choices=STATUS,
+        default=STATUS[0][0]
+    )
+    def __str__(self):
+        return f"{self.client} appointment with {self.get_specialist_display()} for {self.treatment} on {self.date}: booking is {self.status}"
+    def get_absolute_url(self):
+        return reverse('bookings_detail', kwargs={ 'booking_id': self.id })

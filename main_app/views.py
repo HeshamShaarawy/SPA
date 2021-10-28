@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Treatment
+from .models import Treatment, Booking
 
 
 # Create your views here.
@@ -34,4 +34,23 @@ class TreatmentDelete(DeleteView):
     model = Treatment
     success_url = '/treatments/'
 
+#bookings views
+def bookings_index(request):
+  bookings = Booking.objects.all()
+  return render(request, 'bookings/index.html', { 'bookings': bookings })
 
+def bookings_detail(request, booking_id):
+  booking = Booking.objects.get(id=booking_id)
+  return render(request, 'bookings/detail.html', { 'booking': booking })
+
+class BookingCreate(CreateView):
+    model = Booking
+    fields = '__all__'
+    # success_url = '/bookings/'
+class Bookingupdate(UpdateView):
+    model = Booking
+    fields = '__all__'
+
+class BookingDelete(DeleteView):
+    model = Booking
+    success_url = '/bookings/'
