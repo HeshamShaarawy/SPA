@@ -13,6 +13,15 @@ CATEGORIES = (
     (5, 'Hair Services')
 )
 
+PAYMETS = [
+    (1, 'VISA'),
+    (2, 'MASTER CARD'),
+    (3, 'CRYPTO'),
+    (4, 'CASH'),
+
+]
+
+
 class Treatment(models.Model):
     name = models.CharField(max_length=100)
     category = IntegerField(
@@ -23,3 +32,9 @@ class Treatment(models.Model):
     description = models.TextField(max_length=800)
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
+
+class Client(models.Model):
+    name = models.CharField(max_length=300)
+    phone_number = models.IntegerField(max_length=13)
+    email_address = models.EmailField(max_length=254)
+    credit_card = IntegerField(max_length=20)
