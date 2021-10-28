@@ -6,7 +6,7 @@
   <thead>
     <tr><th>Date</th>
         <th>Client</th>
-        <th>Treatment</th>
+        <th>Treatment: Category/Description/Price</th>
         <th>Specialist</th>
         <th>Status</th>
         <th>Actions</th>
@@ -18,7 +18,7 @@
       <tr>
         <td>{{booking.date}}</td>
         <td>{{booking.client}}</td>
-        <td>{{booking.get_treatment_display}}</td>
+        <td>{{booking.treatment}}</td>
         <td>{{booking.get_specialist_display}}</td>
         <td>{{booking.get_status_display}}</td>
         <td>
