@@ -14,7 +14,6 @@ CATEGORIES = (
     (5, 'Hair Services')
 )
 
-<<<<<<< HEAD
 PAYMETS = [
     (1, 'VISA'),
     (2, 'MASTER CARD'),
@@ -23,7 +22,6 @@ PAYMETS = [
 
 ]
 
-=======
 SPECIALISTS = [
     ('Skin Care Specialist',(
             ('sk1', 'Skin1'),
@@ -59,7 +57,6 @@ STATUS = (
     (3, 'Cancelled')
 )
 
->>>>>>> c8a9746e1154986f68e3d2f2d589a94ba9287772
 
 class Treatment(models.Model):
     name = models.CharField(max_length=100)
@@ -71,14 +68,12 @@ class Treatment(models.Model):
     description = models.TextField(max_length=800)
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
-<<<<<<< HEAD
 
 class Client(models.Model):
     name = models.CharField(max_length=300)
     phone_number = models.IntegerField(max_length=13)
     email_address = models.EmailField(max_length=254)
     credit_card = IntegerField(max_length=20)
-=======
     def __str__(self):
         return f"{self.name} - {self.get_category_display()} - ${self.price}"
 
@@ -105,4 +100,3 @@ class Booking(models.Model):
         return f"{self.client} appointment with {self.get_specialist_display()} for {self.treatment} on {self.date}: booking is {self.status}"
     def get_absolute_url(self):
         return reverse('bookings_detail', kwargs={ 'booking_id': self.id })
->>>>>>> c8a9746e1154986f68e3d2f2d589a94ba9287772
