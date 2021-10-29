@@ -1,38 +1,35 @@
 .env
 *.pyc
-<<<<<<< HEAD
-# settings.py
-# /spa/_pycashe_/
+settings.py
+/spa/_pycashe_/
 
-# # Django #
-# *.log
-# *.pot
-# *.pyc
-# __pycache__
-# db.sqlite3
-# media
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
 
-# # Visual Studio Code # 
-# .vscode/* 
-# !.vscode/settings.json 
-# !.vscode/tasks.json 
-# !.vscode/launch.json 
-# !.vscode/extensions.json 
-# .history
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
 
-# # mypy 
-# .mypy_cache/ 
+# mypy 
 
-# # Installer logs 
-# pip-log.txt 
-# pip-delete-this-directory.txt 
+.mypy_cache/
 
-# # Python # 
-# *.py[cod] 
-# *$py.clas
+# Installer logs 
+pip-log.txt 
+pip-delete-this-directory.txt 
 
-# # Backup files # 
-# *.bak 
-=======
-# settings.py
->>>>>>> sk_SPA
+# Python # 
+*.py[cod] 
+*$py.clas
+
+# Backup files # 
+*.bak 
