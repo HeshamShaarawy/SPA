@@ -22,16 +22,17 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
           <li><a href="{% url 'treatments_index' %}">Treatments</a></li>
           <li><a href="{% url 'treatments_create' %}">Create Treatment</a></li>
           <li><a href="{%url 'bookings_create' %}" class="center-align" >Book</a></li>
           <li><a href="{% url 'bookings_index' %}">Bookings</a></li>
-          {% comment %} {% if user.is_authenticated %}
-
-          
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
-          
-          {% endif %} {% endcomment %}
+
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>

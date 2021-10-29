@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.fields import IntegerField
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 CATEGORIES = (
     (1, 'Facial and Skin Treatments'),

@@ -1,5 +1,6 @@
 .env
 *.pyc
+<<<<<<< HEAD
 # settings.py
 # /spa/_pycashe_/
 
@@ -32,3 +33,6 @@
 
 # # Backup files # 
 # *.bak 
+=======
+# settings.py
+>>>>>>> sk_SPA

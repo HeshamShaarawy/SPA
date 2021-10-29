@@ -26,5 +26,8 @@ urlpatterns = [
      path('bookings/<int:pk>/update/', views.BookingUpdate.as_view(), name='bookings_update'),
      path('bookings/<int:pk>/delete/',
           views.BookingDelete.as_view(), name='bookings_delete'),
+     
+     #Authorizarion and registration
+     path('accounts/signup/', views.signup, name='signup'),
 
 ]
