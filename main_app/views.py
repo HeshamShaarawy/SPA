@@ -1,10 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from .models import Treatment, Booking
 
 
-# Create your views here.
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('treatments_index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
 
 def home(request):
     return render(request, 'home.html')
@@ -28,7 +48,7 @@ def treatments_detail(request, treatment_id):
 
 class TreatmentCreate(CreateView):
     model = Treatment
-    fields = '__all__'
+    fields = ['name', 'image', 'category', 'description', 'price']
     # success_url = '/treatments/'
 
 
@@ -55,12 +75,12 @@ def bookings_detail(request, booking_id):
 
 
 class BookingCreate(CreateView):
-    model = Booking
+    model = Booking 
     fields = '__all__'
     # success_url = '/bookings/'
 
 
-class Bookingupdate(UpdateView):
+class BookingUpdate(UpdateView):
     model = Booking
     fields = '__all__'
 
@@ -68,3 +88,6 @@ class Bookingupdate(UpdateView):
 class BookingDelete(DeleteView):
     model = Booking
     success_url = '/bookings/'
+
+
+

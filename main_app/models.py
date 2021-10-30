@@ -1,10 +1,7 @@
 from django.db import models
 from django.db.models.fields import IntegerField
 from django.urls import reverse
-
-
-# Create your models here.
-
+from django.contrib.auth.models import User
 
 CATEGORIES = (
     (1, 'Facial and Skin Treatments'),
@@ -14,7 +11,7 @@ CATEGORIES = (
     (5, 'Hair Services')
 )
 
-PAYMETS = [
+PAYMENTS = [
     (1, 'VISA'),
     (2, 'MASTER CARD'),
     (3, 'CRYPTO'),
@@ -60,38 +57,39 @@ STATUS = (
 
 class Treatment(models.Model):
     name = models.CharField(max_length=100)
-    category = IntegerField(
+    category = models.IntegerField(
         choices=CATEGORIES,
-        default=[1][0]
+        default=CATEGORIES[0][0]
     )
     image = models.CharField(max_length=300)
     description = models.TextField(max_length=800)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-
-
-class Client(models.Model):
-    name = models.CharField(max_length=300)
-    phone_number = models.IntegerField(max_length=13)
-    email_address = models.EmailField(max_length=254)
-    payment_method = IntegerField(
-        choices=PAYMETS,
-        default=[0][0]
-    )
-
     def __str__(self):
         return f"{self.name} - {self.get_category_display()} - ${self.price}"
-
     def get_absolute_url(self):
         return reverse('treatments_detail', kwargs={'treatment_id': self.id})
 
 
+class Client(models.Model):
+    name = models.CharField(max_length=300)
+    phone_number = models.CharField(max_length=13)
+    email_address = models.EmailField(max_length=254)
+    payment_method = IntegerField(
+        choices=PAYMENTS,
+        default=[0][0]
+    )
+
+
+
+
 class Booking(models.Model):
-    date = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField()
+    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
     specialist = models.CharField(
         choices=SPECIALISTS,
         max_length=50
     )
-    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
     client = models.CharField(
         default='Client Name',
         max_length=100

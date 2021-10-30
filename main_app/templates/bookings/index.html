@@ -1,9 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>All Treatments</h1>
+<h1>All Bookings</h1>
 
-{% for treatment in treatments %}
-  <h1>All bookings are here </h1>
-  {% endfor %}
+<table class="striped">
+  <thead>
+    <tr><th>Date</th>
+        <th>Client</th>
+        <th>Treatment: Category/Description/Price</th>
+        <th>Specialist</th>
+        <th>Status</th>
+        <th>Actions</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+      <tr>
+        <td>{{booking.date}}</td>
+        <td>{{booking.client}}</td>
+        <td>{{booking.treatment}}</td>
+        <td>{{booking.get_specialist_display}}</td>
+        <td>{{booking.get_status_display}}</td>
+        <td>
+          <a href="{% url 'bookings_detail' booking.id %}">Details</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 
 {% endblock %}
