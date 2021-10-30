@@ -9,6 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>SPA</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="" href="{% static 'css/style.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
@@ -16,7 +17,17 @@
 
 <body>
 
+<<<<<<< HEAD
   <header class="navbar">
+=======
+  <header class="navbar"> 
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
+>>>>>>> main
     <nav>
       <div class="nav-wrapper">
         <ul>
@@ -32,6 +43,9 @@
           <li><a href="{% url 'clients_create' %}">New Client</a></li>
           <li><a href="{% url 'clients_index' %}">Clients</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
+           <!-- Dropdown Trigger -->
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+    
           {% else %}
 
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -50,5 +64,15 @@
     </div>
   </footer>
 </body>
+<<<<<<< HEAD
 
 </html>
+=======
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
+</script>
+</html> 
+>>>>>>> main
