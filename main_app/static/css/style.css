@@ -2,15 +2,42 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    
+    /* will add later when find nice one */
+
+    /* background-image: url(''); */
+    /* height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
 
 main{
     flex: 1 0 auto;
 }
 
+h1,h2{
+    font-family: 'Merriweather', serif;
+}
+
 footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+
+/* Login and sign up forms styling */
+.center{
+    text-align: center;
+    margin: 0 auto ;
+    justify-content: center;
+    display: flex;
+    padding:10px;
+}
+div.login-form{
+    width: 500px;
+    display: inline-block;
+    border: 1px solid #EEE;
+    box-shadow: 5px 5px 5px 5px grey;
+    padding: 25px;
+}
+
 

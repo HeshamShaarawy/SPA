@@ -1,14 +1,53 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Sign Up</h1>
+<h2 class="center">Registration form</h2>
+<div class="container center">
+    <div class="login-form">
+    {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
 
-{% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+        <form class="col s12" method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
 
-<form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="signup">
-</form>
+            <div class='row'>
+              <div class='col s12'>
+              </div>
+            </div>
 
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input  type='text' name='username' id='username' />
+                <label for='username'> <i class="material-icons">person_outline</i> Enter your username</label>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+            
+                <input class='validate' type='password' name='password1' id='password1' />
+                <label for='password'><i class="material-icons">person_pin</i> Enter your password</label>
+              </div>
+            </div>
+
+             <div class='row'>
+              <div class='input-field col s12'>
+            
+                <input class='validate' type='password' name='password2' id='password2' />
+                <label for='password'><i class="material-icons">person_pin</i> Enter your password</label>
+              </div>
+            </div>
+
+            <br />
+        
+              <div class=' center-align'>
+                <input type="submit" value="signup" class='col s6 btn btn-large waves-effect green'>
+                <input type="hidden" name="next" value="{{ next }}">
+              </div>
+            
+          </form>
+    </div> 
+</div>
+    
 {% endblock %}
+
