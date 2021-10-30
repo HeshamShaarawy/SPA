@@ -3,7 +3,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Treatment, Booking
+from .models import Treatment, Booking, Client
 
 
 def signup(request):
@@ -70,7 +70,7 @@ def bookings_detail(request, booking_id):
 
 
 class BookingCreate(CreateView):
-    model = Booking 
+    model = Booking
     fields = '__all__'
     # success_url = '/bookings/'
 
@@ -84,5 +84,31 @@ class BookingDelete(DeleteView):
     model = Booking
     success_url = '/bookings/'
 
+# Clients views
 
 
+def clients_index(request):
+    clients = Client.objects.all()
+    print(clients)
+    return render(request, 'clients/index.html', {'clients': clients})
+
+
+def clients_detail(request, client_id):
+    client = Client.objects.get(id=client_id)
+    return render(request, 'clients/detail.html', {'client': client})
+
+
+class ClientCreate(CreateView):
+    model = Client
+    fields = '__all__'
+    success_url = '/clients/'
+
+
+class ClientUpdate(UpdateView):
+    model = Client
+    fields = '__all__'
+
+
+class ClientDelete(DeleteView):
+    model = Client
+    success_url = '/clients/'
