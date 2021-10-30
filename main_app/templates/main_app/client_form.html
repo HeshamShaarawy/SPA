@@ -1,12 +1,12 @@
 <style>
-    .container form table tr td select#id_category {
+    .container form table tr td select#id_payment_method {
         display: block !important;
     }
 </style>
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h1> Create New Client</h1>
 <form action="" method="POST" role="form">
     {% csrf_token %}
     <table class="striped">

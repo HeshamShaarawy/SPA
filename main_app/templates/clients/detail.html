@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{ client.first_name }}</h2>
+
+<div class="col s12 m7">
+    <h2 class="header"></h2>
+    <div class="card horizontal">
+        <div class="card-image">
+            <img src="{{ treatment.image }}">
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                <h5>First Name: {{ client.first_name }}</h5>
+                <h5>Last Name: {{ client.last_name }}</h5>
+                <h5>Phone: {{ client.phone_number }}</h5>
+                <h5>Payment_method: {{ client.payment_method }}</h5>
+
+            </div>
+            <div class="card-action">
+                <div class="card-action">
+                    <a class="white-text btn orange light-4" href="{% url 'clients_update' client.id %}">Update</a>
+                    <a class="white-text btn red light-4" href="{% url 'clients_delete' client.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

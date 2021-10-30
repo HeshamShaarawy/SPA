@@ -64,14 +64,17 @@ class Treatment(models.Model):
     image = models.CharField(max_length=300)
     description = models.TextField(max_length=800)
     price = models.DecimalField(max_digits=7, decimal_places=2)
+
     def __str__(self):
         return f"{self.name} - {self.get_category_display()} - ${self.price}"
+
     def get_absolute_url(self):
         return reverse('treatments_detail', kwargs={'treatment_id': self.id})
 
 
 class Client(models.Model):
-    name = models.CharField(max_length=300)
+    first_name = models.CharField(max_length=300)
+    last_name = models.CharField(max_length=300)
     phone_number = models.CharField(max_length=13)
     email_address = models.EmailField(max_length=254)
     payment_method = IntegerField(
@@ -79,7 +82,11 @@ class Client(models.Model):
         default=[0][0]
     )
 
+    def __str__(self):
+        return self.first_name
 
+    def get_absolute_url(self):
+        return reverse('clients', kwargs={'client_id': self.id})
 
 
 class Booking(models.Model):

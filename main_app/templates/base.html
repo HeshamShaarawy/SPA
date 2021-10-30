@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="" href="{% static 'css/style.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
- 
+
 </head>
+
 <body>
 
+<<<<<<< HEAD
+  <header class="navbar">
+=======
   <header class="navbar"> 
     <ul id="dropdown1" class="dropdown-content">
       <li><a href="#!">one</a></li>
@@ -22,6 +27,7 @@
       <li class="divider"></li>
       <li><a href="#!">three</a></li>
     </ul>
+>>>>>>> main
     <nav>
       <div class="nav-wrapper">
         <ul>
@@ -32,8 +38,10 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'treatments_index' %}">Treatments</a></li>
           <li><a href="{% url 'treatments_create' %}">Create Treatment</a></li>
-          <li><a href="{%url 'bookings_create' %}" class="center-align" >Book</a></li>
+          <li><a href="{%url 'bookings_create' %}" class="center-align">Book</a></li>
           <li><a href="{% url 'bookings_index' %}">Bookings</a></li>
+          <li><a href="{% url 'clients_create' %}">New Client</a></li>
+          <li><a href="{% url 'clients_index' %}">Clients</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
            <!-- Dropdown Trigger -->
           <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -46,15 +54,20 @@
         </ul>
       </div>
     </nav>
-   </header>
+  </header>
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; SPA by Hesham Shaarawy, Olga Osipchuk, Svitlana Karahayeva &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; SPA by Hesham Shaarawy, Olga Osipchuk, Svitlana Karahayeva &nbsp;
+    </div>
   </footer>
 </body>
+<<<<<<< HEAD
+
+</html>
+=======
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
@@ -62,3 +75,4 @@
   });
 </script>
 </html> 
+>>>>>>> main

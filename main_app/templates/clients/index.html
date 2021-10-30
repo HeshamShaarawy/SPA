@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Clients</h1>
+{% for client in clients %}
+
+
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">
+            <h5>First Name: {{ client.first_name }}</h5>
+            <h5>Last Name: {{ client.last_name }}</h5>
+            <h5>Phone: {{ client.phone_number }}</h5>
+            <h5>Payment_method: {{ client.payment_method }}</h5>
+            <!-- <button class="white-text btn green light-4"> -->
+            <a href="{% url 'clients_detail' client.id %}">Details</a>
+            <!-- </button> -->
+            <hr />
+        </span>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
