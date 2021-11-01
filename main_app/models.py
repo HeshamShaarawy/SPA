@@ -83,7 +83,7 @@ class Client(models.Model):
     )
 
     def __str__(self):
-        return self.first_name
+        return f"{self.first_name} {self.get_payment_method_display()}"
 
     def get_absolute_url(self):
         return reverse('clients', kwargs={'client_id': self.id})

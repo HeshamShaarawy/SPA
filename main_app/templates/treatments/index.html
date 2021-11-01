@@ -25,7 +25,6 @@
 {% endfor %}
 
 {% comment %} Pagination {% endcomment %}
-
 {% if treatments.has_other_pages %}
   <ul class="pagination">
     {% if treatments.has_previous %}
@@ -47,8 +46,7 @@
     {% else %}
       <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
     {% endif %}
-  </ul>
-  
+  </ul>  
 {% endif %}
 
 {% endblock %}
