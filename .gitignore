@@ -40,3 +40,12 @@ pip-delete-this-directory.txt
 
 # Backup files # 
 *.bak 
+
+# Env #
+#######
+.env
+
+# Python #
+#######
+*.pyc
+__pycache__/
