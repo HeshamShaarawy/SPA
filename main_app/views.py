@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Treatment, Booking, Client
@@ -29,11 +29,17 @@ def about(request):
     return render(request, 'about.html')
 
     # Treatments views
-
-
 def treatments_index(request):
     treatments = Treatment.objects.all()
-    return render(request, 'treatments/index.html', {'treatments': treatments})
+    #displaying number of pages specified per page
+    paginator = Paginator(treatments, 3)
+    page = request.GET.get('page')
+    page_treatments = paginator.get_page(page)
+    
+    context = {
+        'treatments': page_treatments
+    }
+    return render(request, 'treatments/index.html', context)
 
 
 def treatments_detail(request, treatment_id):
