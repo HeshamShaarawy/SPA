@@ -2,6 +2,12 @@
 *.pyc
 settings.py
 /spa/_pycashe_/
+spa/_pycashe_/
+/__pycache__/
+main_app/__pycache__/
+spa/__pycache__/
+main_app/__pycache__/
+/main_app/__pycache__/
 
 # Django #
 *.log
@@ -10,6 +16,7 @@ settings.py
 __pycache__
 db.sqlite3
 media
+
 
 # Visual Studio Code # 
 .vscode/* 
