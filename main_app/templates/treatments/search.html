@@ -7,7 +7,7 @@
 <div class="row">
   <form action="{% url 'treatments_search' %}" method="GET">
     <div class="col s6 input-field">
-        <input id="search" type="search" name="keywords" placeholder="Name keywords" value="{{ values.keywords }}">
+        <input id="search" type="search" name="name" placeholder="Treatment name" value="{{ values.name }}">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
@@ -32,8 +32,6 @@
    
   </form>
 </div>
-
-
 
 
 {% if treatments %}
