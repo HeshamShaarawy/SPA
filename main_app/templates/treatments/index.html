@@ -2,6 +2,36 @@
 {% block content %}
 <h1>All Treatments</h1>
 
+
+<h4>Filter search</h4>
+<div class="row">
+  <form action="{% url 'treatments_search' %}" method="GET">
+    <div class="col s6 input-field">
+      <input id="search" type="search" name="keywords" placeholder="Name keywords" value="{{ values.keywords }}">
+      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+      <i class="material-icons">close</i>
+    </div>
+  
+    <div class="col s6">
+      <label>By Price</label>
+      <select class="browser-default" name="price">
+        <option value="" disabled selected>Choose your option</option>
+        {% for key, value in price_choices.items %}
+          <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <br />
+
+    <div class=' center-align'>
+      <input type="submit" value="Search" class='col s12 btn green'>
+    </div>
+  </form>
+</div>
+
+
+{% if treatments %}
 {% for treatment in treatments %}
 <div class="col s12 m7">
   <h2 class="header"></h2>
@@ -23,6 +53,11 @@
   </div>
 </div>
 {% endfor %}
+
+{% else %}
+
+<h2 class="center">No treatments found</h2>
+{% endif %}
 
 {% comment %} Pagination {% endcomment %}
 {% if treatments.has_other_pages %}

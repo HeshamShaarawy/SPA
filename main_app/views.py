@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+
+from .choices import treatment_category_choices, price_choices
 from .models import Treatment, Booking, Client
 
 
@@ -37,7 +39,10 @@ def treatments_index(request):
     page_treatments = paginator.get_page(page)
     
     context = {
-        'treatments': page_treatments
+        'treatments': page_treatments,
+        #for filtering
+        'treatment_categoty_choices': treatment_category_choices,
+        'price_choices': price_choices
     }
     return render(request, 'treatments/index.html', context)
 
@@ -118,3 +123,28 @@ class ClientUpdate(UpdateView):
 class ClientDelete(DeleteView):
     model = Client
     success_url = '/clients/'
+
+
+#Filter views
+def treatments_search(request):
+    queryset_list = Treatment.objects.all()
+    #Keywords
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            queryset_list = queryset_list.filter(name__icontains=keywords)
+      # Price
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            queryset_list = queryset_list.filter(price__lte=price)
+
+    print('This is search')
+    print(queryset_list)
+    context = {
+        'treatment_categoty_choices': treatment_category_choices,
+        'price_choices': price_choices,
+        'treatments': queryset_list,
+        'values': request.GET 
+    }
+    return render(request, 'treatments/search.html', context)
