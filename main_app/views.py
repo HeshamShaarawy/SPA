@@ -78,7 +78,7 @@ def bookings_detail(request, booking_id):
 class BookingCreate(CreateView):
     model = Booking
     fields = '__all__'
-    # success_url = '/bookings/'
+    success_url = '/bookings/'
 
 
 class BookingUpdate(UpdateView):
