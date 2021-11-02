@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
+<h1>Search client</h1>
 
 <h4>Filter search</h4>
 <div class="row">
   <form action="{% url 'clients_search' %}" method="GET">
     <div class="col s6 input-field">
-        <input id="search" type="search" name="firstname" placeholder="First Name" value="">
+        <input id="search" type="search" name="firstname" placeholder="First Name" value="{{ values.firstname }}">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
 
     <div class="col s6 input-field">
-        <input id="search" type="search" name="lastname" placeholder="Last Name" value="">
+        <input id="search" type="search" name="lastname" placeholder="Last Name" value="{{ values.lastname }}">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
 
     <div class="col s6 input-field">
-        <input id="search" type="search" name="phone" placeholder="Phone Number" value="">
+        <input id="search" type="search" name="phone" placeholder="Phone Number" value="{{ values.phone }}">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
 
     <div class="col s6 input-field">
-        <input id="search" type="search" name="email" placeholder="email" value="">
+        <input id="search" type="search" name="email" placeholder="email" value="{{ values.email }}">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
@@ -34,7 +35,9 @@
   </form>
 </div>
 
-<h1>Clients</h1>
+
+<h1>Found Client(s)</h1>
+{% if clients %}
 {% for client in clients %}
 
 <div class="card">
@@ -53,5 +56,10 @@
 </div>
 
 {% endfor %}
+{% else %}
+
+<h2 class="center">No client(s) found</h2>
+{% endif %}
+
 
 {% endblock %}

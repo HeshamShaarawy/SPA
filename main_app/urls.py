@@ -41,6 +41,9 @@ urlpatterns = [
     #Authorizarion and registration
     path('accounts/signup/', views.signup, name='signup'),
 
-
+    #filters
+    path('search/', views.treatments_search, name='treatments_search'),
+    path('search/clients/', views.clients_search, name='clients_search'),
+#   path('search/bookings/', views.bookings_search, name='bookings_search'),
 
 ]

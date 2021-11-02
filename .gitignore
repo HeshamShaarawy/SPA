@@ -10,6 +10,8 @@ main_app/__pycache__/
 main_app/__pycache__
 spa/__pycache__
 
+spa/__pycache__/
+/main_app/__pycache__/
 
 # Django #
 *.log
