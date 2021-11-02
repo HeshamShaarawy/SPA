@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Search page</h1>
+
+
+<h4>Filter search</h4>
+<div class="row">
+  <form action="{% url 'treatments_search' %}" method="GET">
+    <div class="col s6 input-field">
+        <input id="search" type="search" name="name" placeholder="Treatment name" value="{{ values.name }}">
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div>
+
+    <div class="col s6">
+      <label>By Price</label>
+      <select class="browser-default" name="price">
+        <option value="" disabled selected>Choose price</option>
+        {% for key, value in price_choices.items %}
+            
+          <option value="{{ key }}" 
+            {% if key == values.price %}
+                selected
+            {% endif %}
+          >{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    
+    <br />
+    <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+   
+  </form>
+</div>
+
+
+{% if treatments %}
+{% for treatment in treatments %}
+<div class="col s12 m7">
+  <h2 class="header"></h2>
+  <div class="card horizontal">
+    <div class="card-image">
+      <img src="{{ treatment.image }}">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <h3>{{ treatment.name }}</h3>
+        <p>Price: ${{ treatment.price }}</p>
+
+      </div>
+      <div class="card-action">
+        <a href="{% url 'treatments_detail' treatment.id %}">Details</a>
+       
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% else %}
+
+<h2 class="center">No treatments found</h2>
+{% endif %}
+
+{% endblock %}

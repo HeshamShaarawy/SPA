@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+
+from .choices import price_choices
 from .models import Treatment, Booking, Client
 
 
@@ -37,7 +39,9 @@ def treatments_index(request):
     page_treatments = paginator.get_page(page)
     
     context = {
-        'treatments': page_treatments
+        'treatments': page_treatments,
+        #for filtering
+        'price_choices': price_choices
     }
     return render(request, 'treatments/index.html', context)
 
@@ -78,7 +82,7 @@ def bookings_detail(request, booking_id):
 class BookingCreate(CreateView):
     model = Booking
     fields = '__all__'
-    # success_url = '/bookings/'
+    success_url = '/bookings/'
 
 
 class BookingUpdate(UpdateView):
@@ -118,3 +122,54 @@ class ClientUpdate(UpdateView):
 class ClientDelete(DeleteView):
     model = Client
     success_url = '/clients/'
+
+
+#Filter views
+def treatments_search(request):
+    queryset_list = Treatment.objects.all()
+    #By name
+    if 'name' in request.GET:
+        name = request.GET['name']
+        if name:
+            queryset_list = queryset_list.filter(name__icontains=name)
+      # By price
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            queryset_list = queryset_list.filter(price__lte=price)
+
+    context = {
+        'price_choices': price_choices,
+        'treatments': queryset_list,
+        'values': request.GET 
+    }
+    return render(request, 'treatments/search.html', context)
+
+def clients_search(request):
+    queryset_list = Client.objects.all()
+    #By First Name
+    if 'firstname' in request.GET:
+        firstname = request.GET['firstname']
+        if firstname:
+            queryset_list = queryset_list.filter(first_name__icontains=firstname)
+      # By Last Name
+    if 'lastname' in request.GET:
+        lastname = request.GET['lastname']
+        if lastname:
+            queryset_list = queryset_list.filter(last_name__icontains=lastname)
+    # By Phone number
+    if 'phone' in request.GET:
+        phone = request.GET['phone']
+        if phone:
+            queryset_list = queryset_list.filter(phone_number__iexact=phone)
+    # By Email
+    if 'email' in request.GET:
+        email = request.GET['email']
+        if email:
+            queryset_list = queryset_list.filter(email_address__iexact=email)
+
+    context = {
+        'clients': queryset_list,
+        'values': request.GET 
+    }
+    return render(request, 'clients/search.html', context)

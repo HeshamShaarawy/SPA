@@ -21,28 +21,28 @@ PAYMENTS = [
 
 SPECIALISTS = [
     ('Skin Care Specialist', (
-        ('sk1', 'Skin1'),
-        ('sk2', 'Skin2'),
+        ('sk1', 'James'),
+        ('sk2', 'Mary'),
     )
     ),
     ('Registered Massage Therapist', (
-        ('rmt1', 'Reg.M.T.1'),
-        ('rmt1', 'Reg.M.T.2'),
+        ('rmt1', 'Robert'),
+        ('rmt1', 'Patricia'),
     )
     ),
     ('Laser Technitian', (
-        ('lsr1', 'Laser 1'),
-        ('lsr2', 'Laser 2'),
+        ('lsr1', 'Jennifer'),
+        ('lsr2', 'Michael'),
     )
     ),
     ('Non-Registered Massage provider', (
-        ('Non-RMT1', 'Non-1'),
-        ('Non-RMT2', 'Non-2'),
+        ('Non-RMT1', 'Pam Beesly'),
+        ('Non-RMT2', 'Jim Halpert'),
     )
     ),
     ('Hair Styles', (
-        ('HS-1', 'Hair Artist -1'),
-        ('HS-2', 'Hair Artist -2'),
+        ('HS-1', 'Angela Martin'),
+        ('HS-2', 'Andy Bernard'),
     )
     ),
     ('any', 'any'),
@@ -66,7 +66,7 @@ class Treatment(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
     def __str__(self):
-        return f"{self.name} - {self.get_category_display()} - ${self.price}"
+        return f"{self.get_category_display()} - {self.name} - ${self.price}"
 
     def get_absolute_url(self):
         return reverse('treatments_detail', kwargs={'treatment_id': self.id})
@@ -81,33 +81,33 @@ class Client(models.Model):
         choices=PAYMENTS,
         default=[0][0]
     )
-
     def __str__(self):
-        return f"{self.first_name} {self.get_payment_method_display()}"
-
+        return f"{self.first_name} {self.last_name}"
     def get_absolute_url(self):
-        return reverse('clients', kwargs={'client_id': self.id})
+        return reverse('clients_detail', kwargs={'client_id': self.id})
 
 
 class Booking(models.Model):
     date = models.DateField()
     time = models.TimeField()
-    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
+    treatment = models.ForeignKey(
+        Treatment, 
+        on_delete=models.CASCADE, 
+    )
     specialist = models.CharField(
         choices=SPECIALISTS,
         max_length=50
-    )
-    client = models.CharField(
-        default='Client Name',
-        max_length=100
     )
     status = models.IntegerField(
         choices=STATUS,
         default=STATUS[0][0]
     )
-
+    client = models.ForeignKey(
+        Client, 
+        on_delete=models.CASCADE,
+    )
     def __str__(self):
-        return f"{self.client} appointment with {self.get_specialist_display()} for {self.treatment} on {self.date}: booking is {self.status}"
+        return f"{self.get_client_display()} appointment with {self.get_specialist_display()} for {self.treatment} on {self.date}: booking is {self.status}"
 
     def get_absolute_url(self):
         return reverse('bookings_detail', kwargs={'booking_id': self.id})
