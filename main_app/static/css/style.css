@@ -2,14 +2,17 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+  
     /* will add later when find nice one */
 
-    /* background-image: url(''); */
-    /* height: 100%;
+    background: url('https://i.imgur.com/Mh5P8HP.jpg');
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-size: cover; 
 }
+
+
 
 main{
     flex: 1 0 auto;
@@ -23,6 +26,35 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+
+div.row.filter{
+    max-width: 500px;
+    background-color: rgb(241, 233, 239);
+    padding: 10px;
+  }
+
+
+.nav-wrapper, .page-footer{
+    background-color: rgb(204, 204, 97);
+    stroke-opacity: inherit;
+   
+}
+/* Treatment index page */
+/*  */
+
+
+div.card{
+    border-radius: 30px;
+    max-height:250px;
+    
+}
+img{
+    width:100%;
+    height: 100%;
+}
+div.card:hover {
+    background-color: rgb(226, 238, 236);
+  }
 
 /* Login and sign up forms styling */
 .center{

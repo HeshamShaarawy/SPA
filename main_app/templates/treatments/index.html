@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>All Treatments</h1>
+<h3 class="center-align">All Treatments</h3>
 
-
-<h4>Filter search</h4>
-<div class="row">
+<div class="row filter z-depth-4">
   <form action="{% url 'treatments_search' %}" method="GET">
     <div class="col s6 input-field">
-      <input id="search" type="search" name="keywords" placeholder="Name keywords" value="{{ values.keywords }}">
+      <label>By Name</label>
+      <input id="search" type="search" name="keywords" value="{{ values.keywords }}">
       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
       <i class="material-icons">close</i>
     </div>
@@ -23,31 +22,35 @@
     </div>
 
     <br />
-
-    <div class=' center-align'>
+    <div >
       <input type="submit" value="Search" class='col s12 btn green'>
     </div>
   </form>
 </div>
+</div>
 
-
+<!-- List all treatments -->
 {% if treatments %}
   {% for treatment in treatments %}
-  <div class="col s12 m7">
-    <h2 class="header"></h2>
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="{{ treatment.image }}">
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <h3>{{ treatment.name }}</h3>
-          <p>Price: ${{ treatment.price }}</p>
+  <div class="container ">
+    <div class="row">
+      <div class="col s12">
+        <h2 class="header"></h2>
+        <div class="card horizontal hoverable center-align">
+          <div class="card-image">
+            <img src="{{ treatment.image }}">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h3>{{ treatment.name }}</h3>
+              <p><b>Category:</b> {{ treatment.get_category_display }}</p>
+              <p>Price: ${{ treatment.price }}</p>
 
-        </div>
-        <div class="card-action">
-          <a href="{% url 'treatments_detail' treatment.id %}">Details</a>
-        
+            </div>
+            <div class="card-action">
+              <a href="{% url 'treatments_detail' treatment.id %}">Details</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,6 +60,7 @@
 
   {% comment %} Pagination {% endcomment %}
   {% if treatments.has_other_pages %}
+    <ul class="pagination center-align">
       {% if treatments.has_previous %}
         <li class="waves-effect"><a href="?page={{ treatments.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
       {%else%}
