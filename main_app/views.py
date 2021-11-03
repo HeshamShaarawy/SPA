@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .choices import price_choices
 from .models import Treatment, Booking, Client
+import datetime
 
 
 def signup(request):
@@ -71,11 +72,14 @@ class TreatmentDelete(DeleteView):
 
 def bookings_index(request):
     bookings = Booking.objects.all()
-    #displaying number of pages specified per page
+    bookings = bookings.order_by('-date')
+    
+    date = datetime.date.today()
+     #displaying number of pages specified per page
     paginator = Paginator(bookings, 10)
     page = request.GET.get('page')
     page_bookings = paginator.get_page(page)
-    context = { 'bookings' : page_bookings}
+    context = { 'bookings' : page_bookings, 'date' : date}
     return render(request, 'bookings/index.html',  context)
 
 

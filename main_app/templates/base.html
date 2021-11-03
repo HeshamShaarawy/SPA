@@ -31,7 +31,8 @@
           <li><a href="{% url 'treatments_index' %}">List Treatments</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'clients_create' %}">Register New Client</a></li>
-          <li><a href="{% url 'bookings_create' %}"> Book an appointment</a></li>          
+          <li><a href="{% url 'bookings_create' %}"> Book an appointment</a></li> 
+                 
            <!-- Dropdown Trigger -->
           <li><a class="dropdown-trigger" href="" data-target="dropdown1">Other options<i class="material-icons right">apps</i></a></li>
                 <!-- Dropdown Structure -->
@@ -42,7 +43,7 @@
 
                 </ul>
         
-    
+          <li><a href="{% url 'logout' %}">Log Out</a></li>  
           {% else %}
 
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
