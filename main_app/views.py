@@ -72,7 +72,7 @@ class TreatmentDelete(DeleteView):
 
 def bookings_index(request):
     bookings = Booking.objects.all()
-    bookings = bookings.order_by('-date')
+    bookings = bookings.order_by('date')
     
     date = datetime.date.today()
      #displaying number of pages specified per page

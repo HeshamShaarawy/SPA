@@ -41,7 +41,7 @@
 
 
 
-<h1>Today's & future bookings</h1>
+<h1>Bookings List</h1>
 {% if bookings %}
 
   <table class="striped">
@@ -59,7 +59,6 @@
     <tbody>
      
       {% for booking in bookings %}
-      {% if booking.date >= date %}
         <tr>
           <td>{{booking.date}}</td>
           <td>{{booking.time}}</td>
@@ -71,7 +70,7 @@
             <a href="{% url 'bookings_detail' booking.id %}">Details</a>
           </td>
         </tr>
-        {% endif %}
+        
       {% endfor %}
     </tbody>
   </table>
