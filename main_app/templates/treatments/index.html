@@ -59,6 +59,7 @@
   {% if treatments.has_other_pages %}
       {% if treatments.has_previous %}
         <li class="waves-effect"><a href="?page={{ treatments.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+      {%else%}
         <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
       {% endif %}
 
