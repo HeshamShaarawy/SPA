@@ -84,7 +84,7 @@ class Client(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
     def get_absolute_url(self):
-        return reverse('clients_detail', kwargs={'client_id': self.id})
+        return reverse('clients_detail', kwargs={'client_id': self.id, 'client_name': self.last_name})
 
 
 class Booking(models.Model):

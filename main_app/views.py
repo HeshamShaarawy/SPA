@@ -1,9 +1,9 @@
+from django.db.models.query_utils import Q
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
 from .choices import price_choices
 from .models import Treatment, Booking, Client
 
@@ -71,7 +71,12 @@ class TreatmentDelete(DeleteView):
 
 def bookings_index(request):
     bookings = Booking.objects.all()
-    return render(request, 'bookings/index.html', {'bookings': bookings})
+    #displaying number of pages specified per page
+    paginator = Paginator(bookings, 10)
+    page = request.GET.get('page')
+    page_bookings = paginator.get_page(page)
+    context = { 'bookings' : page_bookings}
+    return render(request, 'bookings/index.html',  context)
 
 
 def bookings_detail(request, booking_id):
@@ -173,3 +178,31 @@ def clients_search(request):
         'values': request.GET 
     }
     return render(request, 'clients/search.html', context)
+
+
+def bookings_search(request):
+    queryset_list = Booking.objects.all()
+    #By name
+    if 'date' in request.GET:
+        date = request.GET['date']
+        if date:
+            queryset_list = queryset_list.filter(date = date)
+      # By price
+    if 'time' in request.GET:
+        time = request.GET['time']
+        if time:
+            queryset_list = queryset_list.filter(time = time)
+    if 'treatment' in request.GET:
+        treatment = request.GET['treatment']
+        if treatment:
+            queryset_list = queryset_list.filter(treatment= treatment)
+    if 'client' in request.GET:
+        client = request.GET['client']
+        if client:
+            queryset_list = queryset_list.filter(client = client)
+
+    context = {
+        'bookings': queryset_list,
+        'values': request.GET 
+    }
+    return render(request, 'bookings/search.html', context)
