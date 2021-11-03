@@ -34,7 +34,7 @@ def about(request):
 def treatments_index(request):
     treatments = Treatment.objects.all()
     #displaying number of pages specified per page
-    paginator = Paginator(treatments, 3)
+    paginator = Paginator(treatments, 4)
     page = request.GET.get('page')
     page_treatments = paginator.get_page(page)
     
