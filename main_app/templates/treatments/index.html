@@ -32,50 +32,52 @@
 
 
 {% if treatments %}
-{% for treatment in treatments %}
-<div class="col s12 m7">
-  <h2 class="header"></h2>
-  <div class="card horizontal">
-    <div class="card-image">
-      <img src="{{ treatment.image }}">
-    </div>
-    <div class="card-stacked">
-      <div class="card-content">
-        <h3>{{ treatment.name }}</h3>
-        <p>Price: ${{ treatment.price }}</p>
-
+  {% for treatment in treatments %}
+  <div class="col s12 m7">
+    <h2 class="header"></h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="{{ treatment.image }}">
       </div>
-      <div class="card-action">
-        <a href="{% url 'treatments_detail' treatment.id %}">Details</a>
-       
+      <div class="card-stacked">
+        <div class="card-content">
+          <h3>{{ treatment.name }}</h3>
+          <p>Price: ${{ treatment.price }}</p>
+
+        </div>
+        <div class="card-action">
+          <a href="{% url 'treatments_detail' treatment.id %}">Details</a>
+        
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endfor %}
+  {% endfor %}
 
 
-{% comment %} Pagination {% endcomment %}
-{% if treatments.has_other_pages %}
-    {% if treatments.has_previous %}
-      <li class="waves-effect"><a href="?page={{ treatments.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-      <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
-    {% endif %}
-
-    {% for index in treatments.paginator.page_range %}
-      {% if treatments.number == index %}
-        <li class="active waves-effect"><a>{{ index }}</a></li> 
-      {% else %}
-        <li class="waves-effect"><a href="?page={{ index }}">{{ index }}</a></li>
+  {% comment %} Pagination {% endcomment %}
+  {% if treatments.has_other_pages %}
+      {% if treatments.has_previous %}
+        <li class="waves-effect"><a href="?page={{ treatments.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+      {%else%}
+        <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
       {% endif %}
-    {% endfor %}
 
-    {% if treatments.has_next %}
-      <li class="waves-effect"><a href="?page={{ treatments.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-    {% else %}
-      <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
-    {% endif %}
-  </ul>  
+      {% for index in treatments.paginator.page_range %}
+        {% if treatments.number == index %}
+          <li class="active waves-effect"><a>{{ index }}</a></li> 
+        {% else %}
+          <li class="waves-effect"><a href="?page={{ index }}">{{ index }}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% if treatments.has_next %}
+        <li class="waves-effect"><a href="?page={{ treatments.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+      {% else %}
+        <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+      {% endif %}
+    </ul>  
+  {% endif %}
 {% endif %}
 
 {% endblock %}

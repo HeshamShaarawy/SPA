@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+<h1>Search page</h1>
 
 <h4>Filter search</h4>
 <div class="row">
   <form action="{% url 'bookings_search' %}" method="GET">
     <div class="col s6 input-field">
-        <input id="search" type="search" name="date" placeholder="enter date"  value="">
+        <input id="search" type="search" name="date" placeholder="enter date yyyy-mm-dd"  value="">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
 
     <div class="col s6 input-field">
-        <input id="search" type="search" name="time" placeholder="time" value="">
+        <input id="search" type="search" name="time" placeholder="time: hh-mm  24hr formate" value="">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
 
     <div class="col s6 input-field">
-        <input id="search" type="search" name="treatment" placeholder="treatment" value="">
+        <input id="search" type="search" name="treatment" placeholder="treatment id" value="">
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
     </div>
@@ -33,20 +34,13 @@
    
   </form>
 </div>
+</div>
 
-
-
-
-
-
-
-
-<h1>All Bookings</h1>
-
+{%if bookings %}
 <table class="striped">
   <thead>
     <tr><th>Date</th>
-        <th>TIme</th>
+        <th>Time</th>
         <th>Client</th>
         <th>Treatment: Category/Description/Price</th>
         <th>Specialist</th>
@@ -72,27 +66,10 @@
   </tbody>
 </table>
 
-{% comment %} Pagination {% endcomment %}
-{% if bookings.has_other_pages %}
-    {% if bookings.has_previous %}
-      <li class="waves-effect"><a href="?page={{ bookings.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-    {%else%}
-      <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
-    {% endif %}
 
-    {% for index in bookings.paginator.page_range %}
-      {% if bookings.number == index %}
-        <li class="active waves-effect"><a>{{ index }}</a></li> 
-      {% else %}
-        <li class="waves-effect"><a href="?page={{ index }}">{{ index }}</a></li>
-      {% endif %}
-    {% endfor %}
+{% else %}
 
-    {% if bookings.has_next %}
-      <li class="waves-effect"><a href="?page={{ treatments.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-    {% else %}
-      <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
-    {% endif %}
-  </ul>  
+<h2 class="center">No bookings found</h2>
 {% endif %}
+
 {% endblock %}
