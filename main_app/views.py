@@ -18,7 +18,7 @@ def signup(request):
       login(request, user)
       return redirect('treatments_index')
     else:
-      error_message = 'Invalid sign up - try again'
+      error_message = 'Invalid information, check the requirements'
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)

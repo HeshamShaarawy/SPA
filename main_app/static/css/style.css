@@ -73,4 +73,8 @@ div.login-form{
     padding: 25px;
 }
 
+/* sign up form  */
+.dropdown-content{
+    width: 500px
+}
 
