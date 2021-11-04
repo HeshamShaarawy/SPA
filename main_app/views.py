@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .choices import price_choices
 from .models import Treatment, Booking, Client
 import datetime
@@ -52,24 +54,27 @@ def treatments_detail(request, treatment_id):
     return render(request, 'treatments/detail.html', {'treatment': treatment})
 
 
-class TreatmentCreate(CreateView):
+class TreatmentCreate(LoginRequiredMixin, CreateView):
     model = Treatment
     fields = ['name', 'image', 'category', 'description', 'price']
     # success_url = '/treatments/'
 
 
-class TreatmentUpdate(UpdateView):
+
+class TreatmentUpdate(LoginRequiredMixin, UpdateView):
     model = Treatment
     fields = '__all__'
 
 
-class TreatmentDelete(DeleteView):
+
+class TreatmentDelete(LoginRequiredMixin,DeleteView):
     model = Treatment
     success_url = '/treatments/'
 
 # bookings views
 
 
+@login_required
 def bookings_index(request):
     bookings = Booking.objects.all()
     bookings = bookings.order_by('date')
@@ -83,57 +88,67 @@ def bookings_index(request):
     return render(request, 'bookings/index.html',  context)
 
 
+@login_required
 def bookings_detail(request, booking_id):
     booking = Booking.objects.get(id=booking_id)
     return render(request, 'bookings/detail.html', {'booking': booking})
 
 
-class BookingCreate(CreateView):
+
+class BookingCreate(LoginRequiredMixin, CreateView):
     model = Booking
     fields = '__all__'
     success_url = '/bookings/'
 
 
-class BookingUpdate(UpdateView):
+
+class BookingUpdate(LoginRequiredMixin, UpdateView):
     model = Booking
     fields = '__all__'
 
 
-class BookingDelete(DeleteView):
+
+class BookingDelete(LoginRequiredMixin, DeleteView):
     model = Booking
     success_url = '/bookings/'
 
 # Clients views
 
 
+@login_required
 def clients_index(request):
     clients = Client.objects.all()
     print(clients)
     return render(request, 'clients/index.html', {'clients': clients})
 
 
+@login_required
 def clients_detail(request, client_id):
     client = Client.objects.get(id=client_id)
     return render(request, 'clients/detail.html', {'client': client})
 
 
-class ClientCreate(CreateView):
+class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     fields = '__all__'
     success_url = '/clients/'
 
 
-class ClientUpdate(UpdateView):
+
+class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = Client
     fields = '__all__'
 
 
-class ClientDelete(DeleteView):
+
+class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = '/clients/'
 
 
 #Filter views
+
+@login_required
 def treatments_search(request):
     queryset_list = Treatment.objects.all()
     #By name
@@ -154,6 +169,8 @@ def treatments_search(request):
     }
     return render(request, 'treatments/search.html', context)
 
+
+@login_required
 def clients_search(request):
     queryset_list = Client.objects.all()
     #By First Name
@@ -183,7 +200,7 @@ def clients_search(request):
     }
     return render(request, 'clients/search.html', context)
 
-
+@login_required
 def bookings_search(request):
     queryset_list = Booking.objects.all()
     #By name
