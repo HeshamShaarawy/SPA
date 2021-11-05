@@ -4,20 +4,17 @@
 
 The application is designed to assist Spa admin team with scheduling appointments, organizing client information, and payment collection. 
 Full CRUD was implemented for 3 main models to effectively manage the data. The admin user is able to create new treatments, clients and connect them through 
-bookings. Admin user is able to filter the data efficiently using several parameterls. 
+bookings. Admin user is able to filter the data efficiently using several parameters. 
 
 ## Inspiration
 
-Coming from different educational backgrounds and work experience, we decided to step into completely new field and learn coding.
-Constant support and each other progress - this what kept ourselves motivated and accountable in our learning journey.
-During the days of studying, all of us probably have had a thought of how lovely would be to spend a day in the SPA,
-therefore we put this idea into our project.
+The developing team is Coming from different educational backgrounds and work experiences, with a common passion to build digital solutions and develop software and web applications. Constant support and each other progress - this what kept ourselves motivated and accountable in our learning journey. During the days of studying, all of us probably have had a thought of how lovely would be to spend a day in the SPA, therefore we put this idea into our project.
 
 ## Features
 
-* Login and Sign up
+* authentication and authorization (Sign up, login) - Django Token-based Authentication
 * CRUD client
-* CRUD appoitment
+* CRUD appointment
 * CRUD treatment
 * Filter search
 * Pagination
@@ -45,12 +42,9 @@ therefore we put this idea into our project.
 
 
 * Python
-* Javascript
 * Django
 * PostreSQL
-* Django Token-based Authentication
-* HTML
-* CSS
+* HTML, CSS, JavascriptCSS
 * Materialize CSS
 
 
