@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3 class="center-align">All Treatments</h3>
+<h3 class="center name-header">All Treatments</h3>
 
 <div class="row filter z-depth-4">
   <form action="{% url 'treatments_search' %}" method="GET">
@@ -27,7 +27,7 @@
     </div>
 
     <br />
-    <div >
+    <div>
       <input type="submit" value="Search" class='col s12 btn green'>
     </div>
   </form>

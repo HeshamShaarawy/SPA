@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h4>Filter search</h4>
-<div class="row">
+<h3 class="center name-header">Clients</h3>
+
+<div class="row filter z-depth-4">
   <form action="{% url 'clients_search' %}" method="GET">
     <div class="col s6 input-field">
         <input id="search" type="search" name="firstname" placeholder="First Name" value="">
@@ -29,29 +30,40 @@
     </div>
 
     <br />
-    <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
-   
+    <button class="btn btn-secondary btn-block mt-4 right" type="submit">Search</button>
   </form>
 </div>
 
-<h1>Clients</h1>
-{% for client in clients %}
 
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">
-            <h5>First Name: {{ client.first_name }}</h5>
-            <h5>Last Name: {{ client.last_name }}</h5>
-            <h5>Phone: {{ client.phone_number }}</h5>
-            <h5>Payment_method: {{ client.get_payment_method_display }}</h5>
-            <!-- <button class="white-text btn green light-4"> -->
-            <a href="{% url 'clients_detail' client.id %}">Details</a>
-            <!-- </button> -->
-            <hr />
-        </span>
+{% if clients %}
+  {% for client in clients %}
+  <div class="container clearfix">
+    <div class="row">
+      <div class="col s12">
+        <h2 class="header"></h2>
+        <div class="card horizontal hoverable center-align">
+          <div class="card-image">
+            
+            <img src="https://i.imgur.com/SIPk22s.png">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+                <h6>First Name: {{ client.first_name }}</h6>
+                <h6>Last Name: {{ client.last_name }}</h6>
+                <h6>Phone: {{ client.phone_number }}</h6>
+                <h6>Payment_method: {{ client.get_payment_method_display }}</h6>  
+            </div>
+            <div class="card-action">
+              <a href="{% url 'clients_detail' client.id %}">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+ {% endfor %}
+{% endif %}
 
-{% endfor %}
+
 
 {% endblock %}

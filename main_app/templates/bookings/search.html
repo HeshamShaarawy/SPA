@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Search page</h1>
+<h3 class="center">Search bookings</h3>
 
-<h4>Filter search</h4>
-<div class="row">
+<div class="row filter z-depth-4">
   <form action="{% url 'bookings_search' %}" method="GET">
     <div class="col s6 input-field">
         <input id="search" type="search" name="date" placeholder="enter date yyyy-mm-dd"  value="{{ values.date }}">
@@ -17,20 +16,10 @@
         <i class="material-icons">close</i>
     </div>
 
-    <div class="col s6 input-field">
-        <input id="search" type="search" name="treatment" placeholder="treatment id" value="{{ values.treatment}}">
-        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-        <i class="material-icons">close</i>
-    </div>
-
-    <div class="col s6 input-field">
-        <input id="search" type="search" name="client" placeholder="by client ID" value="{{ values.client }}">
-        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-        <i class="material-icons">close</i>
-    </div>
-
     <br />
-    <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+    <div >
+      <input type="submit" value="Search" class='col s3 white-text btn-small waves-effect waves-light right'>
+    </div>
    
   </form>
 </div>
@@ -39,7 +28,8 @@
 {%if bookings %}
 <table class="striped">
   <thead>
-    <tr><th>Date</th>
+    <tr>
+        <th>Date</th>
         <th>Time</th>
         <th>Client</th>
         <th>Treatment: Category/Description/Price</th>

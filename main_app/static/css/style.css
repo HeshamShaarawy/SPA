@@ -36,7 +36,7 @@ footer.page-footer {
 
 div.row.filter{
     max-width: 500px;
-    background-color: rgb(241, 233, 239);
+    background-color: rgb(250, 243, 248);
     padding: 10px;
   }
 
@@ -82,3 +82,23 @@ div.login-form{
     text-shadow: 2px 2px green;
 }; 
 
+
+
+/* Tables */
+tbody tr:nth-child(odd) {
+    background-color: #eedef0;
+    color: black
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f7f1f5;
+    color: black
+    
+  }
+ 
+table {
+    background-color: #e7e2e6;
+    color:black;
+    margin: 15px;
+    
+  } 

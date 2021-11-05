@@ -9,14 +9,17 @@
 
 {% block content %}
 
+{% if  client %}
+    <h3 class="center name-header">Update client's info</h3>
+{% else %}
+    <h3 class="center name-header">Create a new client</h3>
+{% endif %}
+
 <form action="" method="POST" role="form">
     {% csrf_token %}
     <table class="striped">
         {{ form.as_table }}
-
     </table>
-
-
-    <input type="submit" value="Submit" class='btn'>
+    <input type="submit" value="Submit" class='col s3 white-text btn-small waves-effect waves-light right'>
 </form>
 {% endblock %}
