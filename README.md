@@ -19,7 +19,7 @@ therefore we put this idea into our project.
 * CRUD client
 * CRUD appoitment
 * CRUD treatment
-* Filtering 
+* Filter search
 * Pagination
 
 ## ERD 
