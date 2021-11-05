@@ -213,10 +213,10 @@ def bookings_search(request):
         time = request.GET['time']
         if time:
             queryset_list = queryset_list.filter(time = time)
-    if 'treatment' in request.GET:
-        treatment = request.GET['treatment']
-        if treatment:
-            queryset_list = queryset_list.filter(treatment= treatment)
+    if 'status' in request.GET:
+        status = request.GET['status']
+        if status:
+            queryset_list = queryset_list.filter(status= status)
     if 'client' in request.GET:
         client = request.GET['client']
         if client:
