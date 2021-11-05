@@ -48,7 +48,7 @@ therefore we put this idea into our project.
 * Javascript
 * Django
 * PostreSQL
-* Token-based Authentication
+* Django Token-based Authentication
 * HTML
 * CSS
 * Materialize CSS
