@@ -2,7 +2,7 @@
 
 ## Description
 
-Our application designed to assist spas with scheduling appointments, organizing client information, and payment collection. 
+Our application is designed to assist spas with scheduling appointments, organizing client information, and payment collection. 
 
 ## Inspiration
 
