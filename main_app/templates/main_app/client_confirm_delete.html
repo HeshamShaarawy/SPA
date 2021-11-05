@@ -1,19 +1,17 @@
-<style>
-    .container form table tr td select#id_category {
-        display: block !important;
-    }
-</style>
-
-
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Delete request for <span class="blue-text">{{ object.name }}</span></h2>
-<h4>Are you sure?</h4>
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes-Delete" class="btn red">
-    <a class="blue-text" href="{% url 'clients_detail' client.id %}">Cancel - Back to {{ object.name }}</a>
-</form>
+<h3 class="center">Delete request for <span class="teal-text">client: {{ object.first_name }} {{ object.last_name }}</span></h3>
+<div class="delete-form center" >
+
+    <form action="" method="POST">
+        <div class="delete-form" >
+            <h4>Are you sure?</h4>
+            {% csrf_token %}
+            <input type="submit" value="Yes-Delete" class="btn red">
+            <a class="blue-text" href="{% url 'clients_detail' client.id %}">Cancel</a>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

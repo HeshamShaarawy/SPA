@@ -17,13 +17,12 @@
           <p>Assigned to : {{booking.get_specialist_display}}</p>
           <p>Current booking status: {{booking.get_status_display}}</p>       
         </div>
-        <div class="card-action">
           <div class="card-action">
-            <a href="{% url 'bookings_index' %}"class="white-text btn">Back</a>
-            <a class="white-text btn orange light-4" href="{% url 'bookings_update' booking.id %}">Update</a>
-            <a class="white-text btn red light-4" href="{% url 'bookings_delete' booking.id %}">Delete</a>
+            <a href="{% url 'bookings_index' %}"class="green-text">Back</a>
+            <a class="orange-text" href="{% url 'bookings_update' booking.id %}">Update</a>
+            <a class="red-text" href="{% url 'bookings_delete' booking.id %}">Delete</a>
           </div>
-        </div>
+        
       </div>
     </div>
   </div>

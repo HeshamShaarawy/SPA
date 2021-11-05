@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if  booking %}
+    <h3 class="center name-header">Update booking info</h3>
+{% else %}
+    <h3 class="center name-header">Add new booking</h3>
+{% endif %}
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        <table class="striped">
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit" class='btn'>
-    </form>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table class="striped">
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" class='col s3 white-text btn-small waves-effect waves-light right'>
+</form>
 
     <script>
         //create a datepicker

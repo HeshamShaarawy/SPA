@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<<<<<<< HEAD
     <h2 class="center">Delete request for <span class="teal-text">{{ object.name }}</span></h2>
+=======
+    <h3 class="center">Delete request for <span class="teal-text">{{ object.name }}</span></h3>
+>>>>>>> main
     <div class="delete-form center" >
         
     <form action="" method="POST">
@@ -9,9 +13,16 @@
             <h4>Are you sure?</h4>
             {% csrf_token %}
             <input type="submit" value="Yes-Delete" class="btn red">
+<<<<<<< HEAD
             <a class="blue-text" href="{% url 'treatments_detail' treatment.id %}">Cancel - Back to {{ object.name }}</a>
         </div>
     </form>
     
+=======
+            <a class="blue-text" href="{% url 'treatments_detail' treatment.id %}">Cancel</a>
+        </div>
+    </form>
+</div>
+>>>>>>> main
 
 {% endblock %}
