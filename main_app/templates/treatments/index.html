@@ -6,7 +6,7 @@
   <form action="{% url 'treatments_search' %}" method="GET">
     <div class="col s6 input-field">
       <label>By Name</label>
-      <input id="search" type="search" name="keywords" value="{{ values.keywords }}">
+      <input id="search" type="search" name="name" value="{{ values.name }}">
       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
       <i class="material-icons">close</i>
     </div>
@@ -14,9 +14,14 @@
     <div class="col s6">
       <label>By Price</label>
       <select class="browser-default" name="price">
-        <option value="" disabled selected>Choose your option</option>
+        <option value="" disabled selected>Choose price</option>
         {% for key, value in price_choices.items %}
-          <option value="{{ key }}">{{ value }}</option>
+            
+          <option value="{{ key }}" 
+            {% if key == values.price %}
+                selected
+            {% endif %}
+          >{{ value }}</option>
         {% endfor %}
       </select>
     </div>
@@ -32,20 +37,20 @@
 <!-- List all treatments -->
 {% if treatments %}
   {% for treatment in treatments %}
-  <div class="container ">
+  <div class="container clearfix">
     <div class="row">
       <div class="col s12">
         <h2 class="header"></h2>
         <div class="card horizontal hoverable center-align">
           <div class="card-image">
+            
             <img src="{{ treatment.image }}">
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <h3>{{ treatment.name }}</h3>
+              <h6><b>{{ treatment.name }}</b></h6> 
               <p><b>Category:</b> {{ treatment.get_category_display }}</p>
-              <p>Price: ${{ treatment.price }}</p>
-
+              <p><b>Price:</b> ${{ treatment.price }} CAD</p>     
             </div>
             <div class="card-action">
               <a href="{% url 'treatments_detail' treatment.id %}">Details</a>

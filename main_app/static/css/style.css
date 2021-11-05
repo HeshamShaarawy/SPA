@@ -2,26 +2,32 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-  
-    /* will add later when find nice one */
 
     background: url('https://i.imgur.com/Mh5P8HP.jpg');
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; 
+    font-family: 'Comfortaa', cursive;    
 }
 
 
+.center{
+    text-align: center;
+    margin: 40 auto ;
+    justify-content: center;
+    display: flex;
+    padding:10px;
+}
 
 main{
     flex: 1 0 auto;
 }
-
 h1,h2{
-    font-family: 'Merriweather', serif;
-    
+    margin: 10px;
+    margin-top: 40px;
 }
+
 
 footer.page-footer {
     padding-top: 0;
@@ -41,30 +47,28 @@ div.row.filter{
    
 }
 /* Treatment index page */
-/*  */
-
 
 div.card{
     border-radius: 30px;
     max-height:250px;
     
 }
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 img{
     width:100%;
     height: 100%;
+
 }
 div.card:hover {
     background-color: rgb(226, 238, 236);
   }
 
 /* Login and sign up forms styling */
-.center{
-    text-align: center;
-    margin: 0 auto ;
-    justify-content: center;
-    display: flex;
-    padding:10px;
-}
+
 div.login-form{
     width: 500px;
     display: inline-block;
@@ -73,4 +77,8 @@ div.login-form{
     padding: 25px;
 }
 
+/* name headers */
+.name-header{
+    text-shadow: 2px 2px green;
+}; 
 

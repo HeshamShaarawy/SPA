@@ -1,12 +1,24 @@
-
 {% extends 'base.html' %}
 {% block content %}
 
 <h2 class="center">Registration form</h2>
+
+    
 <div class="container center">
+  
     <div class="login-form">
     {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
-
+          <!-- Dropdown Trigger -->
+          <a class='dropdown-trigger' href='#' data-target='dropdown1'>Requirements</a>
+          <ul id='dropdown1' class='dropdown-content' style="padding:5px">
+            <li><b>Username:</b> min 8 chars: include letters, digits and symbols (+/-/@)</li>
+            <li class="divider" tabindex="-1"></li>
+            <li><p><b>Password:</b> min 8 charasters: letters, digits, symbols;</p></li>         
+            <li><p>both passwords have to match;</p></li>
+            <li><p>must be unique;</p></li>
+            <li><p>cannot be entirely numeric.</p></li>
+          </ul>
+       
         <form class="col s12" method="post" action="{% url 'signup' %}">
             {% csrf_token %}
 
@@ -25,7 +37,7 @@
             <div class='row'>
               <div class='input-field col s12'>
             
-                <input class='validate' type='password' name='password1' id='password1' />
+                <input class='validate' type='password' name='password1' id='password1'/>
                 <label for='password'><i class="material-icons">person_pin</i> Enter your password</label>
                 <p>
                   Password of 8 or more characters that can't be: similar to your other 
@@ -52,6 +64,10 @@
           </form>
     </div> 
 </div>
-    
+
 {% endblock %}
+
+<script>
+    $('.dropdown-trigger').dropdown();
+</script>
 
