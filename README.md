@@ -2,7 +2,9 @@
 
 ## Description
 
-Our application is designed to assist spas with scheduling appointments, organizing client information, and payment collection. 
+The application is designed to assist Spa admin team with scheduling appointments, organizing client information, and payment collection. 
+Full CRUD was implemented for 3 main models to effectively manage the data. The admin user is able to create new treatments, clients and connect them through 
+bookings. Admin user is able to filter the data efficiently using several parameterls. 
 
 ## Inspiration
 
@@ -14,11 +16,11 @@ therefore we put this idea into our project.
 ## Features
 
 * Login and Sign up
-* Create/edit/delete client
-* Create/edit/delete appoitment
-* Create/edit/delete treatment
-* Upload image 
-
+* CRUD client
+* CRUD appoitment
+* CRUD treatment
+* Filtering 
+* Pagination
 
 ## ERD 
 
@@ -41,12 +43,14 @@ therefore we put this idea into our project.
 
 ## Technologies Used
 
-* HTML
-* CSS
+
 * Python
+* Javascript
 * Django
 * PostreSQL
-* Authentication
+* Token-based Authentication
+* HTML
+* CSS
 * Materialize CSS
 
 
