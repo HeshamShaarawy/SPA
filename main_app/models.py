@@ -66,7 +66,7 @@ class Treatment(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
     def __str__(self):
-        return f"{self.get_category_display()} - Hello -  {self.name} - ${self.price}"
+        return f"{self.get_category_display()} - {self.name} - ${self.price}"
 
     def get_absolute_url(self):
         return reverse('treatments_detail', kwargs={'treatment_id': self.id})
@@ -84,7 +84,7 @@ class Client(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
     def get_absolute_url(self):
-        return reverse('clients_detail', kwargs={'client_id': self.id, 'client_name': self.last_name})
+        return reverse('clients_detail', kwargs={'client_id': self.id})
 
 
 class Booking(models.Model):
