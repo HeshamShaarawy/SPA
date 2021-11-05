@@ -8,10 +8,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>SPA</title>
+  
+  <!-- Materialize links -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -20,34 +33,31 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Spa</a></li>
+          <li><a href="/" class="left brand-logo"><i class="material-icons right">home</i>&nbsp;&nbsp;Spa</a></li>
         </ul>
         <ul class="right">
-          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'treatments_index' %}">List Treatments</a></li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'treatments_index' %}">Treatments</a></li>
-          <li><a href="{% url 'treatments_create' %}">Create Treatment</a></li>
-          <li><a href="{% url 'bookings_index' %}">Bookings</a></li>
-          <li><a href="{% url 'clients_create' %}">New Client</a></li>
-          <li><a href="{% url 'clients_index' %}">Clients</a></li>
+          <li><a href="{% url 'clients_create' %}">Register New Client</a></li>
+          <li><a href="{% url 'bookings_create' %}"> Book an appointment</a></li> 
+                 
            <!-- Dropdown Trigger -->
-          <li><a class="dropdown-trigger" href="" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="" data-target="dropdown1">Other options<i class="material-icons right">apps</i></a></li>
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content'>
-                  <li><a href="#!">one</a></li>
-                  <li><a href="#!">two</a></li>
-                  <li class="divider" tabindex="-1"></li>
-                  <li><a href="#!">three</a></li>
-                  <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                  <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                  <li><a href="{% url 'treatments_create' %}">Create Treatment</a></li>
+                  <li><a href="{% url 'bookings_index' %}">Bookings List</a></li>
+                  <li><a href="{% url 'clients_index' %}">Clients List</a></li>
+
                 </ul>
         
-    
+          <li><a href="{% url 'logout' %}">Log Out</a></li>  
           {% else %}
 
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'login' %}">Log In</a></li>
           {% endif %}
+          <li><a href="{% url 'about' %}">About</a></li>
         </ul>
       </div>
     </nav>
@@ -57,9 +67,13 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; SPA by Hesham Shaarawy, Olga Osipchuk, Svitlana Karahayeva &nbsp;
+    <div class="right">SPA APP by 
+      <a href="https://www.linkedin.com/in/hesha/" target="_blank" rel="noopener noreferrer">Hesham Shaarawy</a> | 
+      <a href="https://www.linkedin.com/in/olga-osipchuk-bb41ba64/" target="_blank" rel="noopener noreferrer"> Olga Osipchuk</a> |
+      <a href="https://www.linkedin.com/in/svitlana-karahayeva-271062135/" target="_blank" rel="noopener noreferrer">Svitlana Karahayeva</a>&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
   </footer>
+  
 </body>
 
 

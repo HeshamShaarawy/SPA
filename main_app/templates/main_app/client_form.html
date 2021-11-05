@@ -1,20 +1,25 @@
 <style>
     .container form table tr td select#id_payment_method {
         display: block !important;
-    }
+    };
+    
 </style>
+
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> Create New Client</h1>
+
+{% if  client %}
+    <h3 class="center name-header">Update client's info</h3>
+{% else %}
+    <h3 class="center name-header">Create a new client</h3>
+{% endif %}
+
 <form action="" method="POST" role="form">
     {% csrf_token %}
     <table class="striped">
         {{ form.as_table }}
-
     </table>
-
-
-    <input type="submit" value="Submit" class='btn'>
+    <input type="submit" value="Submit" class='col s3 white-text btn-small waves-effect waves-light right'>
 </form>
 {% endblock %}

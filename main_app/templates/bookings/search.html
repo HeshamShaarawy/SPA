@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="center">Search bookings</h3>
+
+<div class="row filter z-depth-4">
+  <form action="{% url 'bookings_search' %}" method="GET">
+    <div class="col s6 input-field">
+        <input id="search" type="search" name="date" placeholder="enter date yyyy-mm-dd"  value="{{ values.date }}">
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div>
+
+    <div class="col s6 input-field">
+        <input id="search" type="search" name="time" placeholder="time: hh-mm  24hr formate" value="{{ values.time }}">
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div>
+
+    <br />
+    <div >
+      <input type="submit" value="Search" class='col s3 white-text btn-small waves-effect waves-light right'>
+    </div>
+   
+  </form>
+</div>
+</div>
+
+{%if bookings %}
+<table class="striped">
+  <thead>
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Client</th>
+        <th>Treatment: Category/Description/Price</th>
+        <th>Specialist</th>
+        <th>Status</th>
+        <th>Actions</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+      <tr>
+        <td>{{booking.date}}</td>
+        <td>{{booking.time}}</td>
+        <td>{{booking.client}}</td>
+        <td>{{booking.treatment}}</td>
+        <td>{{booking.get_specialist_display}}</td>
+        <td>{{booking.get_status_display}}</td>
+        <td>
+          <a href="{% url 'bookings_detail' booking.id %}">Details</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% else %}
+
+<h2 class="center">No bookings found</h2>
+{% endif %}
+
+{% endblock %}

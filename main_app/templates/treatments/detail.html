@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>{{ treatment.name }}</h2>
+<h2 class="name-header center">{{ treatment.name }}</h2>
 
   <div class="col s12 m7">
     <h2 class="header"></h2>
@@ -11,19 +11,25 @@
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          <h4>Category: {{ treatment.get_category_display }}</h4>
-          <h4>Price: ${{ treatment.price }} CAD</h4>
-            <p>{{ treatment.description }}</p>        
+          <h6><b>Category:</b> {{ treatment.get_category_display }}</h6>
+          <p><b>Price:</b> ${{ treatment.price }} CAD</p>     
         </div>
+      
         <div class="card-action">
           <div class="card-action">
-            <a href="{% url 'bookings_create' %}"class="white-text btn">Book</a>
-            <a class="white-text btn orange light-4" href="{% url 'treatments_update' treatment.id %}">Update</a>
-            <a class="white-text btn red light-4" href="{% url 'treatments_delete' treatment.id %}">Delete</a>
+            <a href="{% url 'bookings_create' %}"class="white-text btn-small waves-effect waves-light">Book</a>
+            <a class="white-text btn-small orange waves-effect waves-light" href="{% url 'treatments_update' treatment.id %}">Update</a>
+            <a class="white-text btn-small red waves-effect waves-light" href="{% url 'treatments_delete' treatment.id %}">Delete</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="card-panel card teal lighten-5">
+
+      <h4><b>Description:</b></h4>  
+    <p class="onyx-text clearfix">{{ treatment.description }}</p>
   </div>
 
 {% endblock %}

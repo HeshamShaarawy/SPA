@@ -2,34 +2,35 @@
 {% block content %}
 
 
+<h2 class ="center"> SPA booking app</h2>
 
+{% if user.is_authenticated %}
+<h5 class="center">Welcome, {{ user.username }}!</h5>
+<a href="{% url 'logout' %}" class="center">LOG OUT here</a>
+{% else %}
+<a href="{% url 'login' %}" class="center">LOG IN to your account</a>
+{% endif%}
 
-<h3 class ="center"> The purpose of the software</h3>
-
-<br>
-<p>
-    This software is designed to record and schedule bookings through phone or face to face at SPA.
-    There are three modules:
-</p>
-<h4> Treatments </h4>
-
-<h4> Clients</h4>
-
-<h4> Bookings </h4>
-
-
-<p class="center"> Find the developers on linkedin: </p>
-<div class="center">
-    <a href="https://www.linkedin.com/in/hesha/" target="_blank" rel="noopener noreferrer">HESHAM SHAARAWY</a> 
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="https://www.linkedin.com/in/olga-osipchuk-bb41ba64/" target="_blank" rel="noopener noreferrer"> OLGA OSIPCHUK</a>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="https://www.linkedin.com/in/svitlana-karahayeva-271062135/" target="_blank" rel="noopener noreferrer">SVITLANA KARAHAYEVA</a>
+<div class="carousel" id="demo-carousel">
+    <a class="carousel-item" href="#one!"><img src="https://i.imgur.com/P6NKfel.jpg"><p class="center brown-text">Key playform to grow business</p></a>
+    <a class="carousel-item" href="#two!"><img src="https://i.imgur.com/DHLihpM.jpg"><p class="center brown-text">Clear, customizable view of all your sales details</p></a>
+    <a class="carousel-item" href="#three!"><img src="https://i.imgur.com/x34cNOu.jpg"><p class="center brown-text">Access and update your data anytime</p></a>
+    <a class="carousel-item" href="#four!"><img src="https://i.imgur.com/FWntE2T.jpg"><p class="center brown-text">Protected clients' data</p></a>
+    
+    <a class="carousel-item" href="#five!"><img src="https://i.imgur.com/ZAFVKh9.jpg"><p class="center brown-text">Track every interaction, and manage all accounts</p></a>
 </div>
 
 
+<script>
+    
+    $(document).ready(function(){
+      $('#demo-carousel').carousel();
+    });
+
+</script>
 
 {% endblock %}
+
 
 
         

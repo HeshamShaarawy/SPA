@@ -1,11 +1,14 @@
+from django.db.models.query_utils import Q
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .choices import price_choices
 from .models import Treatment, Booking, Client
+import datetime
 
 
 def signup(request):
@@ -17,7 +20,7 @@ def signup(request):
       login(request, user)
       return redirect('treatments_index')
     else:
-      error_message = 'Invalid sign up - try again'
+      error_message = 'Invalid information, check the requirements'
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
@@ -34,7 +37,7 @@ def about(request):
 def treatments_index(request):
     treatments = Treatment.objects.all()
     #displaying number of pages specified per page
-    paginator = Paginator(treatments, 3)
+    paginator = Paginator(treatments, 4)
     page = request.GET.get('page')
     page_treatments = paginator.get_page(page)
     
@@ -51,80 +54,101 @@ def treatments_detail(request, treatment_id):
     return render(request, 'treatments/detail.html', {'treatment': treatment})
 
 
-class TreatmentCreate(CreateView):
+class TreatmentCreate(LoginRequiredMixin, CreateView):
     model = Treatment
     fields = ['name', 'image', 'category', 'description', 'price']
     # success_url = '/treatments/'
 
 
-class TreatmentUpdate(UpdateView):
+
+class TreatmentUpdate(LoginRequiredMixin, UpdateView):
     model = Treatment
     fields = '__all__'
 
 
-class TreatmentDelete(DeleteView):
+
+class TreatmentDelete(LoginRequiredMixin,DeleteView):
     model = Treatment
     success_url = '/treatments/'
 
 # bookings views
 
 
+@login_required
 def bookings_index(request):
     bookings = Booking.objects.all()
-    return render(request, 'bookings/index.html', {'bookings': bookings})
+    bookings = bookings.order_by('date')
+    
+    date = datetime.date.today()
+     #displaying number of pages specified per page
+    paginator = Paginator(bookings, 10)
+    page = request.GET.get('page')
+    page_bookings = paginator.get_page(page)
+    context = { 'bookings' : page_bookings, 'date' : date}
+    return render(request, 'bookings/index.html',  context)
 
 
+@login_required
 def bookings_detail(request, booking_id):
     booking = Booking.objects.get(id=booking_id)
     return render(request, 'bookings/detail.html', {'booking': booking})
 
 
-class BookingCreate(CreateView):
+
+class BookingCreate(LoginRequiredMixin, CreateView):
     model = Booking
     fields = '__all__'
     success_url = '/bookings/'
 
 
-class BookingUpdate(UpdateView):
+
+class BookingUpdate(LoginRequiredMixin, UpdateView):
     model = Booking
     fields = '__all__'
 
 
-class BookingDelete(DeleteView):
+
+class BookingDelete(LoginRequiredMixin, DeleteView):
     model = Booking
     success_url = '/bookings/'
 
 # Clients views
 
 
+@login_required
 def clients_index(request):
     clients = Client.objects.all()
     print(clients)
     return render(request, 'clients/index.html', {'clients': clients})
 
 
+@login_required
 def clients_detail(request, client_id):
     client = Client.objects.get(id=client_id)
     return render(request, 'clients/detail.html', {'client': client})
 
 
-class ClientCreate(CreateView):
+class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     fields = '__all__'
     success_url = '/clients/'
 
 
-class ClientUpdate(UpdateView):
+
+class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = Client
     fields = '__all__'
 
 
-class ClientDelete(DeleteView):
+
+class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = '/clients/'
 
 
 #Filter views
+
+@login_required
 def treatments_search(request):
     queryset_list = Treatment.objects.all()
     #By name
@@ -145,6 +169,8 @@ def treatments_search(request):
     }
     return render(request, 'treatments/search.html', context)
 
+
+@login_required
 def clients_search(request):
     queryset_list = Client.objects.all()
     #By First Name
@@ -173,3 +199,31 @@ def clients_search(request):
         'values': request.GET 
     }
     return render(request, 'clients/search.html', context)
+
+@login_required
+def bookings_search(request):
+    queryset_list = Booking.objects.all()
+    #By name
+    if 'date' in request.GET:
+        date = request.GET['date']
+        if date:
+            queryset_list = queryset_list.filter(date = date)
+      # By price
+    if 'time' in request.GET:
+        time = request.GET['time']
+        if time:
+            queryset_list = queryset_list.filter(time = time)
+    if 'treatment' in request.GET:
+        treatment = request.GET['treatment']
+        if treatment:
+            queryset_list = queryset_list.filter(treatment= treatment)
+    if 'client' in request.GET:
+        client = request.GET['client']
+        if client:
+            queryset_list = queryset_list.filter(client = client)
+
+    context = {
+        'bookings': queryset_list,
+        'values': request.GET 
+    }
+    return render(request, 'bookings/search.html', context)
