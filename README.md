@@ -45,6 +45,9 @@ therefore we put this idea into our project.
 * CSS
 * Python
 * Django
+* PostreSQL
+* Authentication
+* Materialize CSS
 
 
 ## Getting Started
