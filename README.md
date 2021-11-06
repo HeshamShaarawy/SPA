@@ -8,14 +8,14 @@ bookings. Admin user is able to filter the data efficiently using several parame
 
 ## Inspiration
 
-The developing team is Coming from different educational backgrounds and work experiences, with a common passion to build digital solutions and develop software and web applications. Constant support and each other progress - this what kept ourselves motivated and accountable in our learning journey. During the days of studying, all of us probably have had a thought of how lovely would be to spend a day in the SPA, therefore we put this idea into our project.
+The developing team is coming from different educational backgrounds and work experiences, with a common passion to build digital solutions. They love to develop software and web applications. Constant support and each other progress - these what kept themselves motivated and accountable in their learning journey. During the days of studying, all of them probably have had a thought of how lovely would be to spend a day in the SPA. So now the secret is out of how they put this idea into our project!  keep it secert and tell no others
 
 ## Features
 
 * authentication and authorization (Sign up, login) - Django Token-based Authentication
-* CRUD client
-* CRUD appointment
-* CRUD treatment
+* CRUD treatments offerings
+* CRUD client information
+* CRUD appointment sets
 * Filter search
 * Pagination
 
