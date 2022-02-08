@@ -44,7 +44,7 @@ The developing team is coming from different educational backgrounds and work ex
 * Python
 * Django
 * PostreSQL
-* HTML, CSS, JavascriptCSS
+* HTML, CSS, JavaScript
 * Materialize CSS
 
 
