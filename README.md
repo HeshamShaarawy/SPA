@@ -1,4 +1,4 @@
-# _SPA Application_
+# [SPA Application](https://spa-bkg.herokuapp.com/)
 
 ## Description
 
@@ -50,7 +50,7 @@ The developing team is coming from different educational backgrounds and work ex
 
 ## Getting Started
 
-https://spa-bkg.herokuapp.com/
+Please check the app - [SPA Application](https://spa-bkg.herokuapp.com/)
 
 
 
